@@ -38,13 +38,6 @@ module.exports = webpackMerge(commonConfig, {
      */
     metadata: METADATA,
 
-    // proxy: {
-    //     '/api/*': {
-    //         target: 'http://192.168.1.146:8080',
-    //         secure: false
-    //     }
-    // },
-
     /**
      * Switch loaders to debug mode.
      *

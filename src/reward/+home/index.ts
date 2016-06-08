@@ -1,2 +1,2 @@
 export * from './home.component.ts';
-export * from './home.service.ts';
+export * from './Home.service.ts';

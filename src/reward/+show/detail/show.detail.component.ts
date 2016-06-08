@@ -1,18 +1,17 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FORM_DIRECTIVES, ControlGroup, FormBuilder } from '@angular/common';
-import {ROUTER_DIRECTIVES, Router, RouteSegment} from '@angular/router';
-import {Http, Response, HTTP_PROVIDERS, URLSearchParams } from '@angular/http';
+import { ROUTER_DIRECTIVES, Router, RouteSegment } from '@angular/router';
+import { Http, Response, HTTP_PROVIDERS, URLSearchParams } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
-import {TimerWrapper} from '@angular/core/src/facade/async';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 import * as moment from 'moment';
 // import * as _ from 'lodash';
 
 import { PAGINATION_DIRECTIVES, DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
-import {baseUrl} from '../../services/config';
-import {ShowService} from '../Show.service';
-import {Validators} from '../../services/Validators';
+import { baseUrl, Validators } from '../../services';
+import { ShowService } from '../Show.service';
 
 const URL = baseUrl + '/ccs/medias/uploadBackgroundImage';
 
@@ -21,8 +20,8 @@ const downLoadBase = baseUrl + '/rewardManage/show/export';
 @Component({
   moduleId:module.id,
     selector: 'show-detail',
-    templateUrl: 'template.html',
-    styleUrls: ['style.min.css'],
+    template: require('./template.html'),
+  styles: [ require('./style.scss') ],
     directives: [PAGINATION_DIRECTIVES, DATEPICKER_DIRECTIVES, ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     providers: [ShowService, HTTP_PROVIDERS],
     host: {

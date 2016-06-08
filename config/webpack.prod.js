@@ -23,7 +23,7 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || '127.0.0.1';
 const PORT = process.env.PORT || 8080;
 const METADATA = webpackMerge(commonConfig.metadata, {
-    // baseUrl: '/rewardredirect/',
+    baseUrl: '/rewardredirect/',
     host: HOST,
     port: PORT,
     ENV: ENV,
@@ -39,6 +39,8 @@ module.exports = webpackMerge(commonConfig, {
      */
     debug: false,
 
+    metadata: METADATA,
+
     /**
      * Developer tool to enhance debugging
      *
@@ -47,14 +49,14 @@ module.exports = webpackMerge(commonConfig, {
      */
     devtool: 'source-map',
 
-    proxy: {
-        '/api*': {
-            target: 'http://192.168.1.146:8080',
-            pathRewrite: {
-                '^/api': ''
-            }
-        }
-    },
+    // proxy: {
+    //     '/api*': {
+    //         target: 'http://192.168.1.146:8080',
+    //         pathRewrite: {
+    //             '^/api': ''
+    //         }
+    //     }
+    // },
 
     /**
      * Options affecting the output of the compilation.

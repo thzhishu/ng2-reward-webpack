@@ -1,18 +1,17 @@
-import {Component, Input, Output, NgZone} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, RouteSegment} from '@angular/router';
-import {Http, Response, HTTP_PROVIDERS} from '@angular/http';
+import { Component, Input, Output, NgZone } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router, RouteSegment } from '@angular/router';
+import { Http, Response, HTTP_PROVIDERS } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { Jsonp, URLSearchParams, JSONP_PROVIDERS } from '@angular/http';
 import { FORM_DIRECTIVES, ControlGroup, FormBuilder } from '@angular/common';
 import * as moment from 'moment';
-import {UPLOAD_DIRECTIVES} from 'ng2-uploader/ng2-uploader';
+import { UPLOAD_DIRECTIVES } from 'ng2-uploader/ng2-uploader';
 import { PAGINATION_DIRECTIVES, DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
-import {baseUrl} from '../../services/config';
-import {PinProgram, PinService} from '../Pin.service';
-import {Validators} from '../../services/Validators';
-import {TextTohtmlPipe} from '../../pipe/Text.to.html';
+import { baseUrl, Validators } from '../../services';
+import { PinProgram, PinService } from '../Pin.service';
+import { TextTohtmlPipe } from '../../pipe';
 
 const URL = baseUrl + '/medias/uploadBackgroundImage';
 
@@ -22,8 +21,8 @@ const FILE_URL = baseUrl + '/rewardManage/uploadCheckCode';
 @Component({
   moduleId:module.id,
     selector: 'pin-add',
-    templateUrl: 'template.html',
-    styleUrls: ['style.css'],
+    template: require('./template.html'),
+  styles: [ require('./style.css') ],
     directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES, UPLOAD_DIRECTIVES, DATEPICKER_DIRECTIVES],
     providers: [PinService, HTTP_PROVIDERS, JSONP_PROVIDERS],
     pipes: [TextTohtmlPipe],

@@ -1,1 +1,1 @@
-export const baseUrl = 'http://localhost:4500';  //后台路由
+export const baseUrl = '';  //后台路由

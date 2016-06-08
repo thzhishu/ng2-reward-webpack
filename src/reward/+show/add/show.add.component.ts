@@ -1,20 +1,20 @@
-import {Component, NgZone, HostListener} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, RouteSegment} from '@angular/router';
-import { HTTP_PROVIDERS} from '@angular/http';
+import { Component, NgZone, HostListener } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router, RouteSegment } from '@angular/router';
+import { HTTP_PROVIDERS } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { JSONP_PROVIDERS } from '@angular/http';
 import { FORM_DIRECTIVES, ControlGroup, FormBuilder } from '@angular/common';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {UPLOAD_DIRECTIVES} from 'ng2-uploader/ng2-uploader';
-import {DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { UPLOAD_DIRECTIVES } from 'ng2-uploader/ng2-uploader';
+import { DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
 
-import {baseUrl} from '../../services/config';
-import {ShowProgram, ShowService} from '../Show.service';
-import {Validators} from '../../services/Validators';
-import {TextTohtmlPipe} from '../../pipe/Text.to.html';
+import { baseUrl } from '../../services/config';
+import { ShowProgram, ShowService } from '../Show.service';
+import { Validators } from '../../services';
+import { TextTohtmlPipe } from '../../pipe';
 
 const URL = baseUrl + '/medias/uploadBackgroundImage';
 
@@ -22,8 +22,8 @@ const URL = baseUrl + '/medias/uploadBackgroundImage';
 @Component({
     moduleId: module.id,
     selector: 'show-add',
-    templateUrl: 'template.html',
-    styleUrls: ['style.css'],
+    template: require('./template.html'),
+    styles: [ require('./style.css') ],
     directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES, UPLOAD_DIRECTIVES, DATEPICKER_DIRECTIVES],
     providers: [ShowService, HTTP_PROVIDERS, JSONP_PROVIDERS],
     pipes: [TextTohtmlPipe]

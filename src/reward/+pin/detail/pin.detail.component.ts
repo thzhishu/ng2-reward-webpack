@@ -1,18 +1,17 @@
-import {Component, Input, NgZone} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, RouteSegment} from '@angular/router';
-import {Http, Response, HTTP_PROVIDERS, URLSearchParams } from '@angular/http';
-import {TimerWrapper} from '@angular/core/src/facade/async';
+import { Component, Input, NgZone } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router, RouteSegment } from '@angular/router';
+import { Http, Response, HTTP_PROVIDERS, URLSearchParams } from '@angular/http';
+import { TimerWrapper } from '@angular/core/src/facade/async';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {baseUrl} from '../../services/config';
+
 import { PAGINATION_DIRECTIVES, DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
-import {UPLOAD_DIRECTIVES} from 'ng2-uploader/ng2-uploader';
+import { UPLOAD_DIRECTIVES } from 'ng2-uploader/ng2-uploader';
 
-
-import {PinProgram, PinService, PinParams} from '../Pin.service';
-import {Validators} from '../../services/Validators';
+import { baseUrl, Validators } from '../../services';
+import { PinProgram, PinService, PinParams } from '../Pin.service';
 
 const URL = baseUrl + '/ccs/medias/uploadBackgroundImage';
 
@@ -23,9 +22,10 @@ const downLoadBase = baseUrl + '/rewardManage/check/export';
 @Component({
   moduleId:module.id,
     selector: 'pin-detail',
-    templateUrl: 'template.html',
-    styleUrls: ['style.min.css'],
-    directives: [PAGINATION_DIRECTIVES, DATEPICKER_DIRECTIVES, ROUTER_DIRECTIVES, UPLOAD_DIRECTIVES],
+    template: require('./template.html'),
+  styles: [ require('./style.scss') ],
+    directives: [PAGINATION_DIRECTIVES, DATEPICKER_DIRECTIVES, 
+    ROUTER_DIRECTIVES, UPLOAD_DIRECTIVES],
     providers: [PinService, HTTP_PROVIDERS],
     host: {
         '(click)': 'closeDatePicker($event)'

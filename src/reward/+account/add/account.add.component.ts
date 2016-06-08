@@ -1,6 +1,6 @@
-import {Component, Input, Output} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, RouteSegment} from '@angular/router';
-import {Http, Response, HTTP_PROVIDERS} from '@angular/http';
+import { Component, Input, Output } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router, RouteSegment } from '@angular/router';
+import { Http, Response, HTTP_PROVIDERS } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { FORM_DIRECTIVES, ControlGroup, FormBuilder } from '@angular/common';
@@ -9,14 +9,14 @@ import * as _ from 'lodash';
 import { Md5 } from 'ts-md5/dist/md5';
 
 
-import {AccountService} from '../Account.service';
-import {Validators} from '../../services/Validators';
+import { AccountService } from '../Account.service';
+import { Validators } from '../../services';
 
 @Component({
   moduleId:module.id,
     selector: 'account-add',
-    templateUrl: 'template.html',
-    styleUrls: ['style.min.css'],
+    template: require('./template.html'),
+  styles: [ require('./style.scss') ],
     directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     providers: [AccountService, HTTP_PROVIDERS],
 })
@@ -53,7 +53,8 @@ export class AccountAddComponent {
     }
 
     onSubmit() {
-        if (this.subAccount.cRCUPassword === undefined || this.subAccount.cRCUPassword === null || this.subAccount.cRCUPassword === '') {
+        if (this.subAccount.cRCUPassword === undefined || this.subAccount.cRCUPassword === null 
+            || this.subAccount.cRCUPassword === '') {
             alert('密码不能为空');
             return;
         }

@@ -18,7 +18,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
  */
 const METADATA = {
     title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
-    baseUrl: '/rewardredirect/',
+    // baseUrl: '/rewardredirect/',
 };
 
 /*
@@ -188,7 +188,7 @@ module.exports = {
             // },
             {
                 test: /\.(scss|sass)$/,
-                loader: 'raw-loader!style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions!sass?sourceMap'
+                loader: 'raw-loader!style-loader!css-loader!autoprefixer-loader!sass'
             },
 
         ]

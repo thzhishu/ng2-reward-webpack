@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Http, Response, URLSearchParams, Headers, RequestOptions } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import {baseUrl} from '../services/config';
+import { baseUrl } from '../services/config';
 // import { Md5 } from 'ts-md5/dist/md5';
 
 const searchUrl = baseUrl + '/rewardCheckUser/list';
@@ -19,7 +19,9 @@ export class AccountService {
     getOne(id) {
         let search = new URLSearchParams();
         search.set('cRCUId', id);
-        return this.http.get(queryUrl, { search: search }).map(res => res.json()).catch(this.handleError);
+        return this.http.get(queryUrl, { search: search })
+        .map(res => res.json())
+        .catch(this.handleError);
     }
 
     /**
@@ -48,7 +50,9 @@ export class AccountService {
     delete(id) {
         let search = new URLSearchParams();
         search.set('cRCUId', id);
-        return this.http.delete(delUrl, { search: search }).map(res => res.json()).catch(this.handleError);
+        return this.http.delete(delUrl, { search: search })
+        .map(res => res.json())
+        .catch(this.handleError);
     }
     /**
      * 发放/暂停核验型奖励
@@ -62,7 +66,9 @@ export class AccountService {
         let body = JSON.stringify(data);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(URL, body, options).map(res => res.json()).catch(this.handleError);
+        return this.http.post(URL, body, options)
+        .map(res => res.json())
+        .catch(this.handleError);
     }
     /**
      * 关联项目
@@ -74,7 +80,9 @@ export class AccountService {
         search.set('cRPId', params.cRPId);
         search.set('queryType', params.queryType);
         let URL = baseUrl+'/rewardManage/projects/list';
-        return this.http.get(URL, { search: search }).map(res => res.json()).catch(this.handleError);
+        return this.http.get(URL, { search: search })
+        .map(res => res.json())
+        .catch(this.handleError);
     }
     /**
      * 核验子账号列表
@@ -85,7 +93,9 @@ export class AccountService {
         let search = new URLSearchParams();
         search.set('currentPage', data.currentPage);
         search.set('pageSize', data.pageSize);
-        return this.http.get(searchUrl, { search: search }).map(res => res.json()).catch(this.handleError);
+        return this.http.get(searchUrl, { search: search })
+        .map(res => res.json())
+        .catch(this.handleError);
     }
     /**
      * 发放总量

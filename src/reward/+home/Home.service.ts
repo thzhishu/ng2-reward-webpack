@@ -1,14 +1,15 @@
-import {Injectable} from '@angular/core';
-import {Http, Response,Headers, RequestOptions} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import {baseUrl} from '../services/config';
+import { baseUrl } from '../services';
 
 export class RType {
-    constructor(public cRTId:number,public cRPRewardType: number, public cRTRewardName?: string, public cRTStatus?: number) {
+    constructor(public cRTId: number, public cRPRewardType: number,
+        public cRTRewardName?: string, public cRTStatus?: number) {
     }
 }
 
-const HomeListUrl =  baseUrl+'/rewardManage/list';
+const HomeListUrl = baseUrl + '/rewardManage/list';
 
 @Injectable()
 export class HomeService {
@@ -30,7 +31,9 @@ export class HomeService {
         let body = JSON.stringify(program);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(HomeListUrl, body, options).map(res => res.json()).catch(this.handleError);
+        return this.http.post(HomeListUrl, body, options)
+            .map(res => res.json())
+            .catch(this.handleError);
     }
 
     private handleError(error: any) {
