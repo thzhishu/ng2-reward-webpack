@@ -212,7 +212,7 @@ label.disabled {
 }
 
 .zs-bar .zs-back:hover {
-    background: url("../images/back-hover.gif") no-repeat left center;
+    background: url(../images/back-hover.gif) no-repeat left center;
 }
 
 .rd-main {
@@ -283,6 +283,7 @@ a.rd-btn:hover {
     top: 13px;
     padding: 20px;
     text-align: left;
+    color: #888;
 }
 
 .zs-b-des:hover div {
@@ -343,4 +344,8 @@ a.rd-btn-link-inline {
     line-height: 22px;
     text-align: center;
     cursor: pointer;
+}
+
+.re-rule-date .rd-btn {
+    display: inline-block;
 }

@@ -20,6 +20,7 @@ import { AppComponent } from './reward';
  * our Services and Providers into Angular's dependency injection
  */
 export function main(initialHmrState?: any): Promise<any> {
+  
 
   return bootstrap(AppComponent, [
     ...PROVIDERS,

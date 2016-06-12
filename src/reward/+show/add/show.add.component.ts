@@ -23,7 +23,7 @@ const URL = baseUrl + '/medias/uploadBackgroundImage';
     moduleId: module.id,
     selector: 'show-add',
     template: require('./template.html'),
-    styles: [ require('./style.css') ],
+    styles: [require('./style.css'), require('assets/css/md.scss')],
     directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES, UPLOAD_DIRECTIVES, DATEPICKER_DIRECTIVES],
     providers: [ShowService, HTTP_PROVIDERS, JSONP_PROVIDERS],
     pipes: [TextTohtmlPipe]
@@ -57,6 +57,7 @@ export class ShowAddComponent {
     cRPRateContent: any;
 
     dateShow: any = 0;
+    expireRemindShow: any = 0;
 
     constructor(private ss: ShowService, private router: Router,
         fb: FormBuilder, params: RouteSegment) {
@@ -82,6 +83,9 @@ export class ShowAddComponent {
             'cRPRateContent': [''],
             'totalRewards': [''],
             'additionalNumControl': [''],
+            'cRPWarnStock': [''],
+            'cRPEmail': [''],
+            'cRPMobile': [''],
         });
 
         this.totalRewards = this.psForm.controls['totalRewards'];
@@ -99,6 +103,22 @@ export class ShowAddComponent {
     closeDatePicker(event: any) {
         event.stopPropagation();
         this.dateShow = 0;
+    }
+
+    onExpireRemind() { 
+        this.expireRemindShow = 1; 
+    } 
+    
+    onSubmitExpireRemind() { 
+        if (!this.psForm.valid) {
+            this.psForm.markAsTouched();
+            return false;
+        }
+        this.expireRemindShow = 0; 
+    } 
+    
+    onClose() {
+         this.expireRemindShow = 0; 
     }
 
     onShowDate(event) {

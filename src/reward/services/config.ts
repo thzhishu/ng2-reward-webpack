@@ -1,1 +1,1 @@
-export const baseUrl = '';  //后台路由
+export const baseUrl = '/api';  //后台路由
