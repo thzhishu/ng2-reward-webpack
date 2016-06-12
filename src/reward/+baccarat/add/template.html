@@ -125,7 +125,7 @@
                                     <div class="re-tip">请使用240*74比例的的PNG,JPG透明图片，小于2M</div>
                                 </div>
                             </div>
-                            <div *ngIf="baccarat.subInfo.length<8&&!baccarat.cRPId" class="add-prize" (click)="!baccarat.cRPId&&onAddSubInfo()"><span>+添加奖品</span></div>
+                            <div class="add-prize"><span *ngIf="baccarat.subInfo.length<8&&!baccarat.cRPId" (click)="!baccarat.cRPId&&onAddSubInfo()">+添加奖品</span></div>
                         </div>
                         <div class="re-form-field">
                             <div class="re-label">活动说明：<input class="re-ckb" type="checkbox" [(ngModel)]="baccarat.cRPDescShow" [ngFormControl]="bsForm.controls['cRPDescShow']" id="ckb-des"> <label for="ckb-des">显示</label></div>

@@ -96,10 +96,10 @@ export class BaccaratAddComponent {
             'cRPGenerateType': [1],
             'fileName': [''],
             'cRPNoticeNow': [1],
-            'cRPNoticeNowContent': ['奖励领取验证码{验证码}，恭喜您获得由{品牌名}提供的的{奖品名称}一份，有效期{生效日期}至{失效日期}。'],
+            'cRPNoticeNowContent': ['奖励领取验证码{验证码}，恭喜您获得由{品牌名}提供的{奖品名称}一份，有效期{生效日期}至{失效日期}。'],
             'cRPValidNotice': [1],
             'cRPValidNoticeDay': [3],
-            'cRPValidNoticeContent': ['奖励领取验证码{验证码}，您获得的由{品牌名}提供的的{奖品名称}将在{失效日}到期，请及时兑换。'],
+            'cRPValidNoticeContent': ['奖励领取验证码{验证码}，您获得的由{品牌名}提供的{奖品名称}将在{失效日}到期，请及时兑换。'],
         });
         this.cRPRateContent = this.bsForm.controls['cRPRateContent'];
         this.baseUrl = baseUrl;
@@ -114,8 +114,8 @@ export class BaccaratAddComponent {
         this.baccarat.cRPCodeType = 1;
         this.baccarat.cRPGenerateType = 1;
         this.baccarat.cRPValidNoticeDay = 3;
-        this.baccarat.cRPNoticeNowContent = '奖励领取验证码{验证码}，恭喜您获得由{品牌名}提供的的{奖品名称}一份，有效期{生效日期}至{失效日期}'
-        this.baccarat.cRPValidNoticeContent = '奖励领取验证码{验证码}，您获得的由{品牌名}提供的的{奖品名称}将在{失效日}到期，请及时兑换。'
+        this.baccarat.cRPNoticeNowContent = '奖励领取验证码{验证码}，恭喜您获得由{品牌名}提供的{奖品名称}一份，有效期{生效日期}至{失效日期}'
+        this.baccarat.cRPValidNoticeContent = '奖励领取验证码{验证码}，您获得的由{品牌名}提供的{奖品名称}将在{失效日}到期，请及时兑换。'
         this.baccarat.cRPValidStartDate = moment().format('YYYY-MM-DD');
         this.baccarat.cRPValidEndDate = moment().format('YYYY-MM-DD');
         this.baccarat.range = -1;
