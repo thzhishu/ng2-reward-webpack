@@ -18,7 +18,7 @@
       content: '';
       width: 16px;
       height: 14px;
-      background: url(./assets/images/reward_ico.png) no-repeat -164px -282px;
+      background: url(/assets/images/reward_ico.png) no-repeat -164px -282px;
       top: 5px;
       left: 220px;
       z-index: 1;
@@ -65,7 +65,7 @@
   overflow: auto;
 }
 .reward-view{
-  background: url(./assets/images/coupon_normal.png);
+  background: url(/assets/images/coupon_normal.png);
   display: inline-block;
   width: 232px;
   height: 84px;

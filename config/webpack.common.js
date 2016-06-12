@@ -188,7 +188,7 @@ module.exports = {
             // },
             {
                 test: /\.(scss|sass)$/,
-                loader: 'raw-loader!style-loader!css-loader!autoprefixer-loader!sass'
+                loader: 'raw-loader!style-loader!css-loader!autoprefixer-loader!sass-loader'
             },
 
         ]
