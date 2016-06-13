@@ -52,6 +52,9 @@ export class ShowService {
         data.cRPSubtitleShow = data.cRPSubtitleShow ? 1 : 0;
         data.cRPBackgroundShow = data.cRPBackgroundShow ? 1 : 0;
         data.cRPDescShow = data.cRPDescShow ? 1 : 0;
+        data.cRPSystemWarn = data.cRPSystemWarn ? 1 : 0;
+        data.cRPEmailWarn = data.cRPEmailWarn ? 1 : 0;
+        data.cRPMessageWarn = data.cRPMessageWarn ? 1 : 0;
         let body = JSON.stringify(data);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });

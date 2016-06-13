@@ -22,7 +22,7 @@ const FILE_URL = baseUrl + '/rewardManage/uploadCheckCode';
   moduleId:module.id,
     selector: 'pin-add',
     template: require('./template.html'),
-  styles: [ require('./style.css') ],
+  styles: [ require('./style.css'), require('assets/css/md.scss')],
     directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES, UPLOAD_DIRECTIVES, DATEPICKER_DIRECTIVES],
     providers: [PinService, HTTP_PROVIDERS, JSONP_PROVIDERS],
     pipes: [TextTohtmlPipe],
@@ -34,6 +34,7 @@ const FILE_URL = baseUrl + '/rewardManage/uploadCheckCode';
 export class PinAddComponent {
     zone: NgZone;
     psForm: ControlGroup;
+    erForm: ControlGroup;
     pinProgram: any;
     errorMessage: any;
     totalRewards: any;
@@ -64,6 +65,8 @@ export class PinAddComponent {
     file: any;
     image: any;
     state: number=0;
+    expireRemindShow: any = 0;
+    expireRemind: any;
 
     constructor(private ps: PinService, private router: Router, fb: FormBuilder, params: RouteSegment) {
         this.zone = new NgZone({ enableLongStackTrace: false });
@@ -79,9 +82,6 @@ export class PinAddComponent {
             'cRPBackgroundShow': [0],
             'cRPDesc': [''],
             'cRPDescShow': [0],
-            // 'cRPValidDate': [moment().format('YYYY-MM-DD') + '-' + moment().format('YYYY-MM-DD')],
-            // 'cRPValidStartDate': [moment().format('YYYY-MM-DD')],
-            // 'cRPValidEndDate': [moment().format('YYYY-MM-DD')],
             'cRPValidType': [-1],
             'cRPRate': [1],
             'cRPRateContent': ['', Validators.ratio],
@@ -97,6 +97,12 @@ export class PinAddComponent {
             'cRPValidNoticeDay': [3],
             'cRPValidNoticeContent': ['奖励领取验证码{验证码}，您获得的由{品牌名}提供的{奖品名称}将在{失效日}到期，请及时兑换。'],
         });
+        this.erForm = fb.group({
+            'cRPWarnStock': [''],
+            'cRPEmail': [''],
+            'cRPMobile': [''],
+        });
+
         this.totalRewards = this.psForm.controls['totalRewards'];
         this.additionalNumControl = this.psForm.controls['additionalNumControl'];
         this.cRPRateContent = this.psForm.controls['cRPRateContent'];
@@ -125,6 +131,29 @@ export class PinAddComponent {
         this.pinProgram.cRPValidStartDate = moment().format('YYYY-MM-DD');
         this.pinProgram.cRPValidEndDate = moment().format('YYYY-MM-DD');
     }
+
+    onExpireRemind() { 
+        this.expireRemindShow = 1;
+        this.expireRemind = Object.assign({},this.pinProgram);
+    } 
+    
+    onSubmitExpireRemind() { 
+        if (!this.erForm.valid) {
+            this.erForm.markAsTouched();
+            return false;
+        }
+        this.expireRemindShow = 0; 
+        this.pinProgram.cRPWarnStock = this.expireRemind.cRPWarnStock;
+        this.pinProgram.cRPSystemWarn = this.expireRemind.cRPSystemWarn;
+        this.pinProgram.cRPEmailWarn = this.expireRemind.cRPEmailWarn;
+        this.pinProgram.cRPEmail = this.expireRemind.cRPEmail;
+        this.pinProgram.cRPMobile = this.expireRemind.cRPMobile;
+    } 
+    
+    onClose() {
+        this.expireRemindShow = 0; 
+    }
+
 
     onShowDate(event) {
         event.stopPropagation();

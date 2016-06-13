@@ -284,6 +284,7 @@ a.rd-btn:hover {
     padding: 20px;
     text-align: left;
     color: #888;
+    z-index: 2;
 }
 
 .zs-b-des:hover div {

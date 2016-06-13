@@ -37,6 +37,7 @@ const URL = baseUrl + '/medias/uploadBackgroundImage';
 export class ShowAddComponent {
     zone: NgZone;
     psForm: ControlGroup;
+    erForm: ControlGroup;
     program: any;
     errorMessage: any;
     id: number;
@@ -58,6 +59,7 @@ export class ShowAddComponent {
 
     dateShow: any = 0;
     expireRemindShow: any = 0;
+    expireRemind: any;
 
     constructor(private ss: ShowService, private router: Router,
         fb: FormBuilder, params: RouteSegment) {
@@ -83,6 +85,8 @@ export class ShowAddComponent {
             'cRPRateContent': [''],
             'totalRewards': [''],
             'additionalNumControl': [''],
+        });
+        this.erForm = fb.group({
             'cRPWarnStock': [''],
             'cRPEmail': [''],
             'cRPMobile': [''],
@@ -106,19 +110,25 @@ export class ShowAddComponent {
     }
 
     onExpireRemind() { 
-        this.expireRemindShow = 1; 
+        this.expireRemindShow = 1;
+        this.expireRemind = Object.assign({},this.program);
     } 
     
     onSubmitExpireRemind() { 
-        if (!this.psForm.valid) {
-            this.psForm.markAsTouched();
+        if (!this.erForm.valid) {
+            this.erForm.markAsTouched();
             return false;
         }
         this.expireRemindShow = 0; 
+        this.program.cRPWarnStock = this.expireRemind.cRPWarnStock;
+        this.program.cRPSystemWarn = this.expireRemind.cRPSystemWarn;
+        this.program.cRPEmailWarn = this.expireRemind.cRPEmailWarn;
+        this.program.cRPEmail = this.expireRemind.cRPEmail;
+        this.program.cRPMobile = this.expireRemind.cRPMobile;
     } 
     
     onClose() {
-         this.expireRemindShow = 0; 
+        this.expireRemindShow = 0; 
     }
 
     onShowDate(event) {

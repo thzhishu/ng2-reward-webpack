@@ -61,6 +61,9 @@ export class PinService {
         data.cRPDescShow = data.cRPDescShow ? 1 : 0;
         data.cRPNoticeNow = data.cRPNoticeNow ? 1 : 0;
         data.cRPValidNotice = data.cRPValidNotice ? 1 : 0;
+        data.cRPSystemWarn = data.cRPSystemWarn ? 1 : 0;
+        data.cRPEmailWarn = data.cRPEmailWarn ? 1 : 0;
+        data.cRPMessageWarn = data.cRPMessageWarn ? 1 : 0;
         let body = JSON.stringify(data);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });

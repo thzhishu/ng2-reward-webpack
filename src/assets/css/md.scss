@@ -65,10 +65,15 @@
     line-height: 40px;
     color: #888;
  }
-.mx-popwin-btn { display:inline-block; cursor:pointer; text-align:center; border-radius:0px; margin-left:13px; width:62px; height:23px;  background:#9b9b9b ; color:#fff; line-height: 23px;border:1px solid  9b9b9b}
-.mx-popwin-btn-ok {display:inline-block; cursor:pointer; text-align:center; border-radius:0px; margin-left:13px; width:62px; height:23px;   color:#fff; line-height: 23px; background:#00b496 ;border:1px solid  #00b496 }
+.mx-popwin-btn { display:inline-block; cursor:pointer; text-align:center; border-radius:0px; margin-left:13px; width:62px; height:24px;  background:#9b9b9b ; color:#fff; line-height: 23px;border:1px solid  #9b9b9b}
+.mx-popwin-btn-ok {display:inline-block; cursor:pointer; text-align:center; border-radius:0px; margin-left:13px; width:62px; height:24px;   color:#fff; line-height: 23px; background:#00b496 ;border:1px solid  #00b496 }
 .mx-popwin-btn-ok:hover { background:#fff;color:#00b496  ;border:1px solid  #00b496 }
 .mx-popwin-btn:hover { background:#fff;color:#9b9b9b  ;border:1px solid  #9b9b9b }
+.mx-popwin-btn-ok[disabled]{
+  border: 1px solid #9b9b9b;
+  background: #9b9b9b;
+  color:#fff;
+}
 .mx-popwin-body{
   padding:10px;
 }
