@@ -28,7 +28,6 @@ const PinInfoUrl = baseUrl + '/rewardManage/info/query/';
 
 @Injectable()
 export class PinService {
-    program: PinProgram;
     id: number;
     constructor(private http: Http) {
 
@@ -50,9 +49,9 @@ export class PinService {
     add(data) {
         let URL;
         if (data.cRPId === null || data.cRPId === undefined || isNaN(data.cRPId)) {
-            URL = PinAddUrl //新增
+            URL = PinAddUrl; //新增
         } else {
-            URL = PinEditUrl//修改
+            URL = PinEditUrl;//修改
         }
         //加工数据
         data.cRPNameShow = data.cRPNameShow ? 1 : 0;
@@ -64,6 +63,7 @@ export class PinService {
         data.cRPSystemWarn = data.cRPSystemWarn ? 1 : 0;
         data.cRPEmailWarn = data.cRPEmailWarn ? 1 : 0;
         data.cRPMessageWarn = data.cRPMessageWarn ? 1 : 0;
+        data.cRPWarnStock = +data.cRPWarnStock;
         let body = JSON.stringify(data);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });

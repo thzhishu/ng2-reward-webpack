@@ -45,6 +45,7 @@ export class BaccaratService {
         data.cRPSystemWarn = data.cRPSystemWarn ? 1 : 0;
         data.cRPEmailWarn = data.cRPEmailWarn ? 1 : 0;
         data.cRPMessageWarn = data.cRPMessageWarn ? 1 : 0;
+        data.cRPWarnStock = +data.cRPWarnStock;
         let items = [];
         data.subInfo.forEach(item=>{
           items.push({cRPDId:item.cRPDId,cRPDNameShow:item.cRPDNameShow ? 1 : 0,cRPDSubtitleShow:item.cRPDSubtitleShow ? 1 : 0,cRPDNum:item.cRPDNum,cRPDName:item.cRPDName,cRPDSubtitle:item.cRPDSubtitle,cRPDBackgroundAdd:item.cRPDBackgroundAdd});

@@ -144,6 +144,7 @@ export class PinAddComponent {
         }
         this.expireRemindShow = 0; 
         this.pinProgram.cRPWarnStock = this.expireRemind.cRPWarnStock;
+        this.pinProgram.cRPMessageWarn = this.expireRemind.cRPMessageWarn;
         this.pinProgram.cRPSystemWarn = this.expireRemind.cRPSystemWarn;
         this.pinProgram.cRPEmailWarn = this.expireRemind.cRPEmailWarn;
         this.pinProgram.cRPEmail = this.expireRemind.cRPEmail;
@@ -180,6 +181,7 @@ export class PinAddComponent {
     }
 
     ngOnInit() {
+        window.scrollTo(0,0);
         this.getPinProgram();
     }
 

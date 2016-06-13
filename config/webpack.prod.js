@@ -49,15 +49,6 @@ module.exports = webpackMerge(commonConfig, {
      */
     devtool: 'source-map',
 
-    // proxy: {
-    //     '/api*': {
-    //         target: 'http://192.168.1.146:8080',
-    //         pathRewrite: {
-    //             '^/api': ''
-    //         }
-    //     }
-    // },
-
     /**
      * Options affecting the output of the compilation.
      *

@@ -38,7 +38,7 @@ export class ShowAddComponent {
     zone: NgZone;
     psForm: ControlGroup;
     erForm: ControlGroup;
-    program: any;
+    program: any = {};
     errorMessage: any;
     id: number;
     state: number;
@@ -98,9 +98,9 @@ export class ShowAddComponent {
 
         // 初始化数据
         this.basicResp = {};
-        this.program = new ShowProgram(null, 1, '', 1, '', 0, '', 0, '',
-            0, 0, 1, null, null, moment().format('YYYY-MM-DD'),
-            moment().format('YYYY-MM-DD'));
+        // this.program = new ShowProgram(null, 1, '', 1, '', 0, '', 0, '',
+        //     0, 0, 1, null, null, moment().format('YYYY-MM-DD'),
+        //     moment().format('YYYY-MM-DD'));
     }
 
     @HostListener('window:click', ['$event'])
@@ -122,6 +122,7 @@ export class ShowAddComponent {
         this.expireRemindShow = 0; 
         this.program.cRPWarnStock = this.expireRemind.cRPWarnStock;
         this.program.cRPSystemWarn = this.expireRemind.cRPSystemWarn;
+        this.program.cRPMessageWarn = this.expireRemind.cRPMessageWarn;
         this.program.cRPEmailWarn = this.expireRemind.cRPEmailWarn;
         this.program.cRPEmail = this.expireRemind.cRPEmail;
         this.program.cRPMobile = this.expireRemind.cRPMobile;
@@ -153,6 +154,7 @@ export class ShowAddComponent {
     }
 
     ngOnInit() {
+        window.scrollTo(0,0);
         this.getProgram();
     }
 

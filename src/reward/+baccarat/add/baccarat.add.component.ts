@@ -117,6 +117,7 @@ export class BaccaratAddComponent {
     }
 
     ngOnInit() {
+        window.scrollTo(0,0);
         this.baccarat = {};
         this.baccarat.cRPValidDate = moment().format('YYYY-MM-DD') + '-' + moment().format('YYYY-MM-DD');
         this.baccarat.cRPExchangeType = 2;
@@ -139,7 +140,6 @@ export class BaccaratAddComponent {
    onExpireRemind() { 
         this.expireRemindShow = 1;
         this.expireRemind = Object.assign({},this.baccarat);
-        console.log(this.expireRemind );
     } 
     
     onSubmitExpireRemind() { 
@@ -149,6 +149,7 @@ export class BaccaratAddComponent {
         }
         this.expireRemindShow = 0; 
         this.baccarat.cRPWarnStock = this.expireRemind.cRPWarnStock;
+        this.baccarat.cRPMessageWarn = this.expireRemind.cRPMessageWarn;
         this.baccarat.cRPSystemWarn = this.expireRemind.cRPSystemWarn;
         this.baccarat.cRPEmailWarn = this.expireRemind.cRPEmailWarn;
         this.baccarat.cRPEmail = this.expireRemind.cRPEmail;
