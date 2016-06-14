@@ -172,12 +172,12 @@
 
                 <div class="rd-preview fl">
                     <img src="assets/images/preview_block.png" alt="">
-                    <div class="reward-view" [ngStyle]="{background:getImg(),'background-size':'240px 74px'}">
-                        <div class="reward-title" *ngIf="program.cRPNameShow">
-                            {{program.cRPName}}
+                    <div class="reward-view" [ngStyle]="getImg()">
+                        <div class="reward-title">
+                            <span *ngIf="program.cRPNameShow">{{program.cRPName}}</span>
                         </div>
-                        <div class="reward-sub-title" *ngIf="program.cRPSubtitleShow">
-                            {{program.cRPSubtitle}}
+                        <div class="reward-sub-title">
+                            <span *ngIf="program.cRPSubtitleShow">{{program.cRPSubtitle}}</span>
                         </div>
                     </div>
                     <div class="reward-desc-title" *ngIf="program.cRPDescShow" [innerHTML]="program.cRPDesc|textTohtml">

@@ -123,8 +123,7 @@ export class PinAddComponent {
         this.pinProgram.cRPCodeCommon = '';
         this.pinProgram.cRPGenerateType = 1;
         this.pinProgram.cRPNoticeNow = 1;
-        this.pinProgram.cRPNoticeNowContent = `奖励领取验证码{验证码}，恭喜您获得由{品牌名}提供的{奖品名称}一份，
-                                                有效期{生效日期}至{失效日期}。`;
+        this.pinProgram.cRPNoticeNowContent = '奖励领取验证码{验证码}，恭喜您获得由{品牌名}提供的{奖品名称}一份，有效期{生效日期}至{失效日期}。';
         this.pinProgram.cRPValidNotice = 1;
         this.pinProgram.cRPValidNoticeDay = 3;
         this.pinProgram.cRPValidNoticeContent = '奖励领取验证码{验证码}，您获得的由{品牌名}提供的{奖品名称}将在{失效日}到期，请及时兑换。';
@@ -252,7 +251,7 @@ export class PinAddComponent {
 
     getImg() {
         if (this.pinProgram.cRPBackgroundAdd && this.pinProgram.cRPBackgroundShow) {
-            return 'url(\'/' + this.pinProgram.cRPBackgroundAdd + '\') no-repeat center center';
+            return {'background':'url(\''+baseUrl +'/' + this.pinProgram.cRPBackgroundAdd + '\') no-repeat center center / cover','background-size':'cover'};
         }
     }
 
@@ -316,13 +315,14 @@ export class PinAddComponent {
             this.psForm.markAsTouched();
             return false;
         }
-        if (this.before(this.pinProgram.cRPValidEndDate, this.pinProgram.cRPValidStartDate)) {
+        let data = Object.assign({},this.pinProgram);
+        if (this.before(data.cRPValidEndDate, data.cRPValidStartDate)) {
             this.timeError = 1;
             return false;
         } else {
             this.timeError = 0;
         }
-        if (this.pinProgram.cRPGenerateType == 1 && this.pinProgram.totalRewards == null) {
+        if (data.cRPGenerateType == 1 && data.totalRewards == null) {
             this.totalRewardsError = 1;
             return false
         } else {
@@ -332,13 +332,13 @@ export class PinAddComponent {
             return false;
         }
         this.loading = 1;
-        if (this.pinProgram.cRPDesc != null) {
-            this.pinProgram.cRPDesc = this.pinProgram.cRPDesc.replace(/[\n]/g, '<br/>');
+        if (data.cRPDesc != null) {
+            data.cRPDesc = data.cRPDesc.replace(/[\n]/g, '<br/>');
         }
-        this.ps.add(this.pinProgram).subscribe(data => {
+        this.ps.add(data).subscribe(res => {
             this.loading = 0;
-            if (data.error.state !== 0) {
-                alert(data.error.msg);
+            if (res.error.state !== 0) {
+                alert(res.error.msg);
                 return;
             }
 

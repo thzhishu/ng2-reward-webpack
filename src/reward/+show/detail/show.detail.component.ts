@@ -21,7 +21,7 @@ const downLoadBase = baseUrl + '/rewardManage/show/export';
   moduleId:module.id,
     selector: 'show-detail',
     template: require('./template.html'),
-  styles: [ require('./style.scss') ],
+  styles: [ require('./style.scss'), require('assets/css/md.scss') ],
     directives: [PAGINATION_DIRECTIVES, DATEPICKER_DIRECTIVES, ROUTER_DIRECTIVES, FORM_DIRECTIVES],
     providers: [ShowService, HTTP_PROVIDERS],
     host: {
@@ -52,6 +52,7 @@ export class ShowDetailComponent {
     additionalNumControl: any;
 
     loading: number = 0;
+    rewardShow: number = 0;
     additionalNumError: number = 0;
     timeError: any;
 
@@ -73,6 +74,19 @@ export class ShowDetailComponent {
         this.prizesParams.range = -1;
 
         this.additionalNumControl = this.showForm.controls['additionalNumControl'];
+    }
+
+    onDelRewardShow() { 
+        this.rewardShow = 1;
+    } 
+    
+    onSubmit() { 
+        this.onDelete();
+        this.onClose();
+    } 
+    
+    onClose() {
+        this.rewardShow = 0; 
     }
 
     onShowDate(event) {
@@ -101,19 +115,26 @@ export class ShowDetailComponent {
 
     onSetRange(range) {
       this.prizesParams.range = range;
-        if (range == '-1') {
+      if (range == '-1') {
             this.prizesParams.startDate = moment().format('YYYY-MM-DD');
             this.prizesParams.endDate = moment().format('YYYY-MM-DD');
-        } else if (range == '7' || range == '30' || range == '90') {
+        } else {
             this.prizesParams.startDate = moment().subtract(range, 'days').format('YYYY-MM-DD');
             this.prizesParams.endDate = moment().format('YYYY-MM-DD');
-        } else if (range === 'currentYear') {
-            this.prizesParams.startDate = moment().startOf('year').format('YYYY-MM-DD');
-            this.prizesParams.endDate = moment().endOf('year').format('YYYY-MM-DD');
-        } else if (range === 'nextYear') {
-            this.prizesParams.startDate = moment().add(1, 'y').startOf('year').format('YYYY-MM-DD');
-            this.prizesParams.endDate = moment().add(1, 'y').endOf('year').format('YYYY-MM-DD');
         }
+        // if (range == '-1') {
+        //     this.prizesParams.startDate = moment().format('YYYY-MM-DD');
+        //     this.prizesParams.endDate = moment().format('YYYY-MM-DD');
+        // } else if (range == '7' || range == '30' || range == '90') {
+        //     this.prizesParams.startDate = moment().subtract(range, 'days').format('YYYY-MM-DD');
+        //     this.prizesParams.endDate = moment().format('YYYY-MM-DD');
+        // } else if (range === 'currentYear') {
+        //     this.prizesParams.startDate = moment().startOf('year').format('YYYY-MM-DD');
+        //     this.prizesParams.endDate = moment().endOf('year').format('YYYY-MM-DD');
+        // } else if (range === 'nextYear') {
+        //     this.prizesParams.startDate = moment().add(1, 'y').startOf('year').format('YYYY-MM-DD');
+        //     this.prizesParams.endDate = moment().add(1, 'y').endOf('year').format('YYYY-MM-DD');
+        // }
     }
 
     pageChanged(page) {
@@ -124,11 +145,15 @@ export class ShowDetailComponent {
 
 
     onDownload() {
+        let params = Object.assign({},this.prizesParams);
+
         let search = new URLSearchParams();
-        search.set('cRPId', this.prizesParams.cRPId);
-        search.set('startDate', this.prizesParams.startDate);
-        search.set('endDate', this.prizesParams.endDate);
-        search.set('projectId', this.prizesParams.projectId);
+        search.set('cRPId', params.cRPId);
+        search.set('projectId', params.projectId);
+        if(params.range!=-1){
+            search.set('startDate', params.startDate || '');
+            search.set('endDate', params.endDate || '');
+        }
         return downLoadBase + '?' + search;
     }
 
@@ -148,9 +173,6 @@ export class ShowDetailComponent {
     }
 
     onDelete() {
-        if (!confirm('是否删除该奖励?')) {
-            return;
-        }
         this.ss.delete(this.id).subscribe(data => {
             if (this.errorAlert(data)) {
                 this.toHome();

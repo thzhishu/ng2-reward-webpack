@@ -96,11 +96,18 @@ export class ShowAddComponent {
         this.additionalNumControl = this.psForm.controls['additionalNumControl'];
         this.cRPRateContent = this.psForm.controls['cRPRateContent'];
 
+    }
+
+    ngOnInit() {
+        window.scrollTo(0,0);
         // 初始化数据
         this.basicResp = {};
-        // this.program = new ShowProgram(null, 1, '', 1, '', 0, '', 0, '',
-        //     0, 0, 1, null, null, moment().format('YYYY-MM-DD'),
-        //     moment().format('YYYY-MM-DD'));
+        this.program.cRPNameShow = 1;
+        this.program.cRPRate = 1;
+        this.program.cRPValidType = -1;
+        this.program.cRPValidStartDate = moment().format('YYYY-MM-DD');
+        this.program.cRPValidEndDate = moment().format('YYYY-MM-DD');
+        this.getProgram();
     }
 
     @HostListener('window:click', ['$event'])
@@ -153,10 +160,7 @@ export class ShowAddComponent {
         return moment(date).toDate();
     }
 
-    ngOnInit() {
-        window.scrollTo(0,0);
-        this.getProgram();
-    }
+    
 
 
     handleUpload(data): void {
@@ -182,7 +186,7 @@ export class ShowAddComponent {
 
     getImg() {
         if (this.program.cRPBackgroundAdd && this.program.cRPBackgroundShow) {
-            return 'url(\'/' + this.program.cRPBackgroundAdd + '\') no-repeat center center';
+            return {'background':'url(\''+baseUrl +'/' + this.program.cRPBackgroundAdd + '\') no-repeat center center /cover','background-size':'cover'};
         }
     }
 

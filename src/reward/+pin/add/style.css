@@ -33,16 +33,17 @@
 }
 
 .reward-title {
-    height: 26px;
-    line-height: 26px;
+    line-height: 35px;
     text-align: center;
     color: #fff;
     font-size: 22px;
+    height: 35px;
+    margin-top: 10px;
+    word-break: break-all;
 }
 
 .reward-sub-title {
-    height: 20px;
-    line-height: 20px;
+    line-height: 16px;
     text-align: center;
     color: #fff;
     font-size: 16px;
@@ -73,6 +74,7 @@
     height: 95px;
     /*text-align: center;*/
     overflow: auto;
+    word-break: break-all;
 }
 
 .th-datepicker-block .th-datepicker-range {

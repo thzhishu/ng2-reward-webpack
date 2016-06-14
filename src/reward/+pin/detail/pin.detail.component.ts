@@ -23,7 +23,7 @@ const downLoadBase = baseUrl + '/rewardManage/check/export';
   moduleId:module.id,
     selector: 'pin-detail',
     template: require('./template.html'),
-  styles: [ require('./style.scss') ],
+  styles: [ require('./style.scss'), require('assets/css/md.scss') ],
     directives: [PAGINATION_DIRECTIVES, DATEPICKER_DIRECTIVES, 
     ROUTER_DIRECTIVES, UPLOAD_DIRECTIVES],
     providers: [PinService, HTTP_PROVIDERS],
@@ -66,6 +66,8 @@ export class PinDetailComponent {
 
     baseUrl: string;
 
+    rewardShow: number = 0;
+
     constructor(private ps: PinService, private router: Router, params: RouteSegment) {
         this.zone = new NgZone({ enableLongStackTrace: false });
         this.id = +params.getParam('id'); //获取URL中的ID
@@ -83,6 +85,20 @@ export class PinDetailComponent {
         this.prizesParams.endDate = moment().format('YYYY-MM-DD');
         this.prizesParams.range = -1;
     }
+
+    onDelRewardShow() { 
+        this.rewardShow = 1;
+    } 
+    
+    onSubmit() { 
+        this.onDelete();
+        this.onClose();
+    } 
+    
+    onClose() {
+        this.rewardShow = 0; 
+    }
+
     onShowDate(event) {
         event.stopPropagation();
         this.dateShow = !this.dateShow;
@@ -108,16 +124,23 @@ export class PinDetailComponent {
         if (range == '-1') {
             this.prizesParams.startDate = moment().format('YYYY-MM-DD');
             this.prizesParams.endDate = moment().format('YYYY-MM-DD');
-        } else if (range == '7' || range == '30' || range == '90') {
+        } else {
             this.prizesParams.startDate = moment().subtract(range, 'days').format('YYYY-MM-DD');
             this.prizesParams.endDate = moment().format('YYYY-MM-DD');
-        } else if (range === 'currentYear') {
-            this.prizesParams.startDate = moment().startOf('year').format('YYYY-MM-DD');
-            this.prizesParams.endDate = moment().endOf('year').format('YYYY-MM-DD');
-        } else if (range === 'nextYear') {
-            this.prizesParams.startDate = moment().add(1, 'y').startOf('year').format('YYYY-MM-DD');
-            this.prizesParams.endDate = moment().add(1, 'y').endOf('year').format('YYYY-MM-DD');
         }
+        // if (range == '-1') {
+        //     this.prizesParams.startDate = moment().format('YYYY-MM-DD');
+        //     this.prizesParams.endDate = moment().format('YYYY-MM-DD');
+        // } else if (range == '7' || range == '30' || range == '90') {
+        //     this.prizesParams.startDate = moment().subtract(range, 'days').format('YYYY-MM-DD');
+        //     this.prizesParams.endDate = moment().format('YYYY-MM-DD');
+        // } else if (range === 'currentYear') {
+        //     this.prizesParams.startDate = moment().startOf('year').format('YYYY-MM-DD');
+        //     this.prizesParams.endDate = moment().endOf('year').format('YYYY-MM-DD');
+        // } else if (range === 'nextYear') {
+        //     this.prizesParams.startDate = moment().add(1, 'y').startOf('year').format('YYYY-MM-DD');
+        //     this.prizesParams.endDate = moment().add(1, 'y').endOf('year').format('YYYY-MM-DD');
+        // }
     }
     pageChanged(page) {
         this.currentPage = page.page;
@@ -126,16 +149,19 @@ export class PinDetailComponent {
     }
 
     onDownload() {
-        let search = new URLSearchParams();
         let status = '0';
+        let params = Object.assign({},this.prizesParams);
 
-        search.set('cRPId', this.prizesParams.cRPId);
-        search.set('cRPDId', this.prizesParams.cRPDId);
-        search.set('sendStatus', this.prizesParams.sendStatus);
-        search.set('verifyStatus', this.prizesParams.verifyStatus);
-        search.set('startDate', this.prizesParams.startDate || '');
-        search.set('endDate', this.prizesParams.endDate || '');
-        search.set('projectId', this.prizesParams.projectId);
+        let search = new URLSearchParams();
+        search.set('cRPId', params.cRPId);
+        search.set('cRPDId', params.cRPDId);
+        search.set('sendStatus', params.sendStatus);
+        search.set('verifyStatus', params.verifyStatus);
+        search.set('projectId', params.projectId);
+        if(params.range!=-1){
+            search.set('startDate', params.startDate || '');
+            search.set('endDate', params.endDate || '');
+        }
         return downLoadBase + '?' + search;
     }
 
@@ -162,9 +188,6 @@ export class PinDetailComponent {
     }
 
     onDelete() {
-        if (!confirm('是否删除该奖励?')) {
-            return;
-        }
         this.ps.delete(this.id).subscribe(data => {
             if (this.errorAlert(data)) {
                 this.toHome();

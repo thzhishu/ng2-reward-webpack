@@ -147,9 +147,11 @@
                             <div class="re-label"><span class="text-danger">*</span>码类型：</div>
                             <div class="re-convert-ops re-convert-code">
                                 <input class="re-ckb re-ckb-radio" [disabled]="pinProgram.cRPId" type="radio" name="convertCode" [checked]="pinProgram.cRPCodeType === 1" (click)="pinProgram.cRPCodeType = 1" id="convert-code-1"> <label for="convert-code-1">一人一码</label>
-                                <input class="re-ckb re-ckb-radio" [disabled]="pinProgram.cRPId" type="radio" name="convertCode" [checked]="pinProgram.cRPCodeType === 2" (click)="pinProgram.cRPCodeType = 2;pinProgram.cRPValidType=-1;" id="convert-code-2">                                <label for="convert-code-2">通用码</label>
-                                <input class="inputtxt input-70" type="text" maxlength="8" *ngIf="pinProgram.cRPCodeType === 2" [(ngModel)]="pinProgram.cRPCodeCommon" [ngFormControl]="psForm.controls['cRPCodeCommon']">
-                                <span>输入6-8位数字与英文字母的组合，如 SALE20</span>
+                                <input class="re-ckb re-ckb-radio" [disabled]="pinProgram.cRPId" type="radio" name="convertCode" [checked]="pinProgram.cRPCodeType === 2" (click)="pinProgram.cRPCodeType = 2;pinProgram.cRPValidType=-1;" id="convert-code-2">
+                                <label
+                                    for="convert-code-2">通用码</label>
+                                    <input class="inputtxt input-70" type="text" maxlength="8" *ngIf="pinProgram.cRPCodeType === 2" [(ngModel)]="pinProgram.cRPCodeCommon" [ngFormControl]="psForm.controls['cRPCodeCommon']">
+                                    <span>输入6-8位数字与英文字母的组合，如 SALE20</span>
                             </div>
                         </div>
                         <div class="re-form-field" *ngIf="pinProgram.cRPCodeType === 1">
@@ -260,8 +262,7 @@
                                 <div class="re-msg-ops">
                                     <input class="re-ckb" type="checkbox" [(ngModel)]="pinProgram.cRPNoticeNow" [ngFormControl]="psForm.controls['cRPNoticeNow']" id="ckb-msg-notice"> <label for="ckb-msg-notice">获奖后立即通知（短信¥0.50元/条，发送（{{pinProgram.cRPGenerateType === 1?(pinProgram.totalRewards||0):(uploadFileXls?.data?.num||0)}}）份奖励需¥{{pinProgram.cRPGenerateType === 1?(pinProgram.totalRewards||0)*0.5:(uploadFileXls?.data?.num||0)*0.5}}元）</label>
                                 </div>
-                                <textarea name="" id="" cols="30" rows="10" maxlength="1000" [(ngModel)]="pinProgram.cRPNoticeNowContent" [ngFormControl]="psForm.controls['cRPNoticeNowContent']">
-              </textarea>
+                                <textarea name="" id="" cols="30" rows="10" maxlength="1000" [(ngModel)]="pinProgram.cRPNoticeNowContent" [ngFormControl]="psForm.controls['cRPNoticeNowContent']"></textarea>
                                 <div class="re-msg-ops">
                                     <input class="re-ckb" type="checkbox" id="ckb-msg-day" [(ngModel)]="pinProgram.cRPValidNotice" [ngFormControl]="psForm.controls['cRPValidNotice']">
                                     <label for="ckb-msg-day"></label> 到期前
@@ -273,8 +274,7 @@
                                     天通知
 
                                 </div>
-                                <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pinProgram.cRPValidNoticeContent" [ngFormControl]="psForm.controls['cRPValidNoticeContent']">
-              </textarea>
+                                <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pinProgram.cRPValidNoticeContent" [ngFormControl]="psForm.controls['cRPValidNoticeContent']"></textarea>
                             </div>
 
                         </div>
@@ -283,20 +283,20 @@
                 </div>
                 <div class="rd-preview fl">
                     <img src="assets/images/preview_block.png" alt="">
-                    <div class="reward-view" [ngStyle]="{background:getImg(),'background-size':'240px 74px'}">
+                    <div class="reward-view" [ngStyle]="getImg()">
                         <div class="reward-title">
                             <span *ngIf="psForm.value.cRPNameShow">{{psForm.value.cRPName}}</span>
                         </div>
                         <div class="reward-sub-title">
                             <span *ngIf="psForm.value.cRPSubtitleShow">{{psForm.value.cRPSubtitle}}</span>
                         </div>
-                        <div class="reward-code-title">
+                        <!--<div class="reward-code-title">
                             <span *ngIf="pinProgram.cRPCodeType===2">兑换码:{{psForm.value.cRPCodeCommon}}</span>
                             <span *ngIf="pinProgram.cRPCodeType===1">一人一码</span>
-                        </div>
-                        <div class="reward-time-title">
+                        </div>-->
+                        <!--<div class="reward-time-title">
                             <span *ngIf="psForm.value.cRPValidType===-1">有效日期：{{psForm.value.cRPValidStartDate}}-{{psForm.value.cRPValidEndDate}}</span>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="reward-desc-title" *ngIf="psForm.value.cRPDescShow" [innerHTML]="psForm.value.cRPDesc|textTohtml">
                     </div>
