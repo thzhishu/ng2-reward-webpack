@@ -19,10 +19,10 @@ const FILE_URL = baseUrl + '/rewardManage/uploadCheckCode';
 
 
 @Component({
-  moduleId:module.id,
+    moduleId: module.id,
     selector: 'pin-add',
     template: require('./template.html'),
-  styles: [ require('./style.css'), require('assets/css/md.scss')],
+    styles: [require('./style.css'), require('assets/css/md.scss')],
     directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES, UPLOAD_DIRECTIVES, DATEPICKER_DIRECTIVES],
     providers: [PinService, HTTP_PROVIDERS, JSONP_PROVIDERS],
     pipes: [TextTohtmlPipe],
@@ -64,7 +64,7 @@ export class PinAddComponent {
     timeError: any = 0;
     file: any;
     image: any;
-    state: number=0;
+    state: number = 0;
     expireRemindShow: any = 0;
     expireRemind: any;
 
@@ -131,27 +131,42 @@ export class PinAddComponent {
         this.pinProgram.cRPValidEndDate = moment().format('YYYY-MM-DD');
     }
 
-    onExpireRemind() { 
+    ngOnInit() {
+        window.scrollTo(0, 0);
+        this.getPinProgram();
+    }
+
+    onNumberPipe($event) {
+        if (isNaN(+$event.target.value)) {
+            $event.target.value = 1;
+        } else if (+$event.target.value < 1) {
+            $event.target.value = 1;
+        } else if (+$event.target.value > 8) {
+            $event.target.value = 9;
+        }
+    }
+
+    onExpireRemind() {
         this.expireRemindShow = 1;
-        this.expireRemind = Object.assign({},this.pinProgram);
-    } 
-    
-    onSubmitExpireRemind() { 
+        this.expireRemind = Object.assign({}, this.pinProgram);
+    }
+
+    onSubmitExpireRemind() {
         if (!this.erForm.valid) {
             this.erForm.markAsTouched();
             return false;
         }
-        this.expireRemindShow = 0; 
+        this.expireRemindShow = 0;
         this.pinProgram.cRPWarnStock = this.expireRemind.cRPWarnStock;
         this.pinProgram.cRPMessageWarn = this.expireRemind.cRPMessageWarn;
         this.pinProgram.cRPSystemWarn = this.expireRemind.cRPSystemWarn;
         this.pinProgram.cRPEmailWarn = this.expireRemind.cRPEmailWarn;
         this.pinProgram.cRPEmail = this.expireRemind.cRPEmail;
         this.pinProgram.cRPMobile = this.expireRemind.cRPMobile;
-    } 
-    
+    }
+
     onClose() {
-        this.expireRemindShow = 0; 
+        this.expireRemindShow = 0;
     }
 
 
@@ -160,9 +175,9 @@ export class PinAddComponent {
         this.dateShow = !this.dateShow;
     }
 
-    onInitDate(){
-      this.pinProgram.cRPValidStartDate =  moment().format('YYYY-MM-DD');
-      this.pinProgram.cRPValidEndDate =  moment().format('YYYY-MM-DD');
+    onInitDate() {
+        this.pinProgram.cRPValidStartDate = moment().format('YYYY-MM-DD');
+        this.pinProgram.cRPValidEndDate = moment().format('YYYY-MM-DD');
     }
 
     public closeDatePicker(event) {
@@ -179,10 +194,7 @@ export class PinAddComponent {
         return moment(date).toDate();
     }
 
-    ngOnInit() {
-        window.scrollTo(0,0);
-        this.getPinProgram();
-    }
+
 
     getPinProgram() {
         if (this.id === undefined || isNaN(this.id)) return;
@@ -196,9 +208,9 @@ export class PinAddComponent {
         if (this.pinProgram.cRPDesc != null) {
             this.pinProgram.cRPDesc = this.pinProgram.cRPDesc.replace(/<br\/>/g, '\n');
         }
-        if (this.pinProgram.cRPBackgroundAdd == ''||this.pinProgram.cRPBackgroundAdd==null) {
+        if (this.pinProgram.cRPBackgroundAdd == '' || this.pinProgram.cRPBackgroundAdd == null) {
 
-        }else{
+        } else {
             this.uploadFile = {};
             this.uploadFile.data = this.pinProgram.cRPBackgroundAdd;
         }
@@ -251,7 +263,7 @@ export class PinAddComponent {
 
     getImg() {
         if (this.pinProgram.cRPBackgroundAdd && this.pinProgram.cRPBackgroundShow) {
-            return {'background':'url(\''+baseUrl +'/' + this.pinProgram.cRPBackgroundAdd + '\') no-repeat center center / cover','background-size':'cover'};
+            return { 'background': 'url(\'' + baseUrl + '/' + this.pinProgram.cRPBackgroundAdd + '\') no-repeat center center / cover', 'background-size': 'cover' };
         }
     }
 
@@ -315,7 +327,7 @@ export class PinAddComponent {
             this.psForm.markAsTouched();
             return false;
         }
-        let data = Object.assign({},this.pinProgram);
+        let data = Object.assign({}, this.pinProgram);
         if (this.before(data.cRPValidEndDate, data.cRPValidStartDate)) {
             this.timeError = 1;
             return false;

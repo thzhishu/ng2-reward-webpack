@@ -350,3 +350,12 @@ a.rd-btn-link-inline {
 .re-rule-date .rd-btn {
     display: inline-block;
 }
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+

@@ -106,16 +106,16 @@
                         </thead>
                         <tbody *ngIf="pinList">
                             <tr *ngFor="let psl of pinList;let i = index;">
-                                <td>{{i+1}}</td>
-                                <td>{{psl.cRCode}}</td>
-                                <td *ngIf="info?.cRPExchangeType">{{psl.cRPrizeName}}</td>
+                                <td>{{(i+1)*currentPage}}</td>
+                                <td>{{psl.cRCode||'-'}}</td>
+                                <td *ngIf="info?.cRPExchangeType">{{psl.cRPrizeName||'-'}}</td>
                                 <td>{{psl.cRStatus!==0?'已发放':'-'}}</td>
                                 <td *ngIf="info?.cRPCodeType==1">{{psl.cRStatus===2?'已兑换':'未兑换'}}</td>
-                                <td>{{moment(psl.cRSendTime,'YYYY-MM-DD HH:mm')}}</td>
-                                <td>{{psl.groupName}}</td>
-                                <td>{{psl.entityName}}</td>
+                                <td>{{moment(psl.cRSendTime,'YYYY-MM-DD HH:mm')||'-'}}</td>
+                                <td>{{psl.groupName||'-'}}</td>
+                                <td>{{psl.entityName||'-'}}</td>
                                 <td>{{psl.cRMobile||'-'}}</td>
-                                <td *ngIf="info?.cRPCodeType==1">{{moment(psl.cRVerifyTime,'YYYY-MM-DD HH:mm')}}</td>
+                                <td *ngIf="info?.cRPCodeType==1">{{moment(psl.cRVerifyTime,'YYYY-MM-DD HH:mm')||'-'}}</td>
                                 <td *ngIf="info?.cRPCodeType==1">{{psl.userName||'-'}}</td>
                             </tr>
                         </tbody>
@@ -221,10 +221,10 @@
                             <span class="c-green">{{tl.senderNum}}</span>
                             <a class="s-ico s-ico-down" target="_blank" [href]="onDoneDownload(tl.cRPDId)"></a>
                         </div>
-                        <div *ngIf="info?.cRPCodeType==1">
+                        <div>
                             <span>已兑换数量</span>
                             <span class="c-green">{{tl.verfiyNum}}</span>
-                            <a class="s-ico s-ico-down" target="_blank" [href]="onExchangeDownload(tl.cRPDId)"></a>
+                            <a *ngIf="info?.cRPCodeType==1" class="s-ico s-ico-down" target="_blank" [href]="onExchangeDownload(tl.cRPDId)"></a>
                         </div>
                     </div>
                 </div>

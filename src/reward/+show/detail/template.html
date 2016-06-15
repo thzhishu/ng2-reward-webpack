@@ -73,11 +73,11 @@
                         </thead>
                         <tbody *ngIf="showList">
                             <tr *ngFor="let psl of showList;let i = index;">
-                                <td>{{i+1}}</td>
-                                <td>{{moment(psl.cRSendTime,'YYYY-MM-DD HH:mm')}}</td>
-                                <td>{{psl.groupName}}</td>
-                                <td>{{psl.cREntityName}}</td>
-                                <td>{{psl.cRMobile}}</td>
+                                <td>{{(i+1)*currentPage}}</td>
+                                <td>{{moment(psl.cRSendTime,'YYYY-MM-DD HH:mm')||'-'}}</td>
+                                <td>{{psl.groupName||'-'}}</td>
+                                <td>{{psl.cREntityName||'-'}}</td>
+                                <td>{{psl.cRMobile||'-'}}</td>
                             </tr>
                         </tbody>
                     </table>

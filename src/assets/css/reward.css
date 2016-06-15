@@ -357,11 +357,11 @@
 }
 
 .re-ckb-radio + label:before {
-    background-position: -236px -47px;
+    background-position: -234px -47px;
 }
 
 .re-ckb-radio:checked + label:before {
-    background-position: -203px -47px;
+    background-position: -201px -47px;
 }
 
 .re-pr + label {
@@ -377,11 +377,11 @@
 }
 
 .re-ckb:disabled:not(:checked) + label:before {
-    background: url(../images/checkbox-disabled.png) no-repeat 2px 2px
+    background: url(../images/checkbox-disabled.png) no-repeat 1px 2px;
 }
 
 .re-ckb-radio:disabled:not(:checked) + label:before {
-    background: url(../images/radio-disabled.png) no-repeat 2px 2px
+    background: url(../images/radio-disabled.png) no-repeat 1px 2px;
 }
 
 

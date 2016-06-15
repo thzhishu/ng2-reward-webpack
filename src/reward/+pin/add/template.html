@@ -148,10 +148,9 @@
                             <div class="re-convert-ops re-convert-code">
                                 <input class="re-ckb re-ckb-radio" [disabled]="pinProgram.cRPId" type="radio" name="convertCode" [checked]="pinProgram.cRPCodeType === 1" (click)="pinProgram.cRPCodeType = 1" id="convert-code-1"> <label for="convert-code-1">一人一码</label>
                                 <input class="re-ckb re-ckb-radio" [disabled]="pinProgram.cRPId" type="radio" name="convertCode" [checked]="pinProgram.cRPCodeType === 2" (click)="pinProgram.cRPCodeType = 2;pinProgram.cRPValidType=-1;" id="convert-code-2">
-                                <label
-                                    for="convert-code-2">通用码</label>
-                                    <input class="inputtxt input-70" type="text" maxlength="8" *ngIf="pinProgram.cRPCodeType === 2" [(ngModel)]="pinProgram.cRPCodeCommon" [ngFormControl]="psForm.controls['cRPCodeCommon']">
-                                    <span>输入6-8位数字与英文字母的组合，如 SALE20</span>
+                                <label for="convert-code-2">通用码</label>
+                                <input class="inputtxt input-70" type="text" maxlength="8" *ngIf="pinProgram.cRPCodeType === 2" [(ngModel)]="pinProgram.cRPCodeCommon" [ngFormControl]="psForm.controls['cRPCodeCommon']">
+                                <span>输入6-8位数字与英文字母的组合，如 SALE20</span>
                             </div>
                         </div>
                         <div class="re-form-field" *ngIf="pinProgram.cRPCodeType === 1">
@@ -201,23 +200,22 @@
                         </div>
                         <div class="advance advance-result advance-err" *ngIf="uploadFileXls?.error?.state>0&&pinProgram.cRPGenerateType === 2&&pinProgram.cRPCodeType === 1">
                             <div class="clearfix">
-                                <span>{{uploadFileXls?.error.msg}}</span>
-                                <div class="re-upload re-upload-op">
+                                <span class="re-upload-error">{{uploadFileXls?.error.msg}}</span>
+                                <span class="re-upload re-upload-op fr">
                                     <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">
                                     <div class="upload-op">重新上传</div>
                                     <div class="upload-op" (click)="onDelFileName()">删除</div>
-                                    <div class="re-progress clearfix" *ngIf="fileProgress">
-                                        <div>
-                                            <span></span>
-                                            <div class="re-progress-bar">
-                                                <div [ngStyle]="{ 'width': fileProgress + '%' }"></div>
-                                            </div>
-                                            <span>{{fileProgress + '%'}}</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                </span>
                             </div>
                             <div class="re-tip">核验码需由字母和数字组合，6-12位</div>
+                        </div>
+                        <div *ngIf="pinProgram.cRPGenerateType === 2" class="link-btn" (click)="onExpireRemind()">+添加到期提醒
+                            <div class="zs-b-des">
+                                <i></i>
+                                <div>
+                                    当可发放的奖励少于一定数量时，我们将通过邮件或者手机短信通知到您
+                                </div>
+                            </div>
                         </div>
                         <div class="re-form-field" *ngIf="pinProgram.cRPGenerateType === 1">
                             <div class="re-label">
@@ -262,19 +260,19 @@
                                 <div class="re-msg-ops">
                                     <input class="re-ckb" type="checkbox" [(ngModel)]="pinProgram.cRPNoticeNow" [ngFormControl]="psForm.controls['cRPNoticeNow']" id="ckb-msg-notice"> <label for="ckb-msg-notice">获奖后立即通知（短信¥0.50元/条，发送（{{pinProgram.cRPGenerateType === 1?(pinProgram.totalRewards||0):(uploadFileXls?.data?.num||0)}}）份奖励需¥{{pinProgram.cRPGenerateType === 1?(pinProgram.totalRewards||0)*0.5:(uploadFileXls?.data?.num||0)*0.5}}元）</label>
                                 </div>
-                                <textarea name="" id="" cols="30" rows="10" maxlength="1000" [(ngModel)]="pinProgram.cRPNoticeNowContent" [ngFormControl]="psForm.controls['cRPNoticeNowContent']"></textarea>
+                                <textarea name="" id="" cols="30" rows="10" maxlength="60" [(ngModel)]="pinProgram.cRPNoticeNowContent" [ngFormControl]="psForm.controls['cRPNoticeNowContent']"></textarea>
                                 <div class="re-msg-ops">
                                     <input class="re-ckb" type="checkbox" id="ckb-msg-day" [(ngModel)]="pinProgram.cRPValidNotice" [ngFormControl]="psForm.controls['cRPValidNotice']">
                                     <label for="ckb-msg-day"></label> 到期前
                                     <div class="msg-day">
                                         <span class="minus" (click)="pinProgram.cRPValidNoticeDay=pinProgram.cRPValidNoticeDay>1?pinProgram.cRPValidNoticeDay-1:1"></span>
-                                        <input type="text" [ngModel]="pinProgram.cRPValidNoticeDay" (ngModelChange)="pinProgram.cRPValidNoticeDay=$event>8?9:$event">
+                                        <input type="text" [(ngModel)]="pinProgram.cRPValidNoticeDay" (input)="onNumberPipe($event)">
                                         <span class="plus" (click)="pinProgram.cRPValidNoticeDay=pinProgram.cRPValidNoticeDay>8?9:pinProgram.cRPValidNoticeDay+1"></span>
                                     </div>
                                     天通知
 
                                 </div>
-                                <textarea name="" id="" cols="30" rows="10" [(ngModel)]="pinProgram.cRPValidNoticeContent" [ngFormControl]="psForm.controls['cRPValidNoticeContent']"></textarea>
+                                <textarea name="" id="" cols="30" rows="10" maxlength="60" [(ngModel)]="pinProgram.cRPValidNoticeContent" [ngFormControl]="psForm.controls['cRPValidNoticeContent']"></textarea>
                             </div>
 
                         </div>

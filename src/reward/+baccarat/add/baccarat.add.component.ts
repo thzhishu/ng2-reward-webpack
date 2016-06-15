@@ -136,6 +136,16 @@ export class BaccaratAddComponent {
 
         this.getPinProgram();
     }
+    
+    onNumberPipe($event){
+        if(isNaN(+$event.target.value)){
+            $event.target.value =  1;
+        }else if(+$event.target.value<1){
+            $event.target.value =  1;
+        }else if(+$event.target.value>8){
+            $event.target.value =  9;
+        }
+    }
 
    onExpireRemind() { 
         this.expireRemindShow = 1;
