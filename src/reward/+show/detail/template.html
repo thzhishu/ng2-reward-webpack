@@ -73,7 +73,7 @@
                         </thead>
                         <tbody *ngIf="showList">
                             <tr *ngFor="let psl of showList;let i = index;">
-                                <td>{{(i+1)*currentPage}}</td>
+                                <td>{{(i+1)+(currentPage-1)*pageSize}}</td>
                                 <td>{{moment(psl.cRSendTime,'YYYY-MM-DD HH:mm')||'-'}}</td>
                                 <td>{{psl.groupName||'-'}}</td>
                                 <td>{{psl.cREntityName||'-'}}</td>
