@@ -150,7 +150,6 @@
                                 <input class="re-ckb re-ckb-radio" [disabled]="pinProgram.cRPId" type="radio" name="convertCode" [checked]="pinProgram.cRPCodeType === 2" (click)="pinProgram.cRPCodeType = 2;pinProgram.cRPValidType=-1;" id="convert-code-2">
                                 <label for="convert-code-2">通用码</label>
                                 <input class="inputtxt input-70" type="text" maxlength="8" *ngIf="pinProgram.cRPCodeType === 2" [(ngModel)]="pinProgram.cRPCodeCommon" [ngFormControl]="psForm.controls['cRPCodeCommon']">
-                                <span>输入6-8位数字与英文字母的组合，如 SALE20</span>
                             </div>
                         </div>
                         <div class="re-form-field" *ngIf="pinProgram.cRPCodeType === 1">
@@ -200,12 +199,13 @@
                         </div>
                         <div class="advance advance-result advance-err" *ngIf="uploadFileXls?.error?.state>0&&pinProgram.cRPGenerateType === 2&&pinProgram.cRPCodeType === 1">
                             <div class="clearfix">
-                                <span class="re-upload-error">{{uploadFileXls?.error.msg}}</span>
-                                <span class="re-upload re-upload-op fr">
+                                <span class="re-upload-error">上传失败</span>
+                                <span class="re-upload re-upload-op">
                                     <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">
                                     <div class="upload-op">重新上传</div>
                                     <div class="upload-op" (click)="onDelFileName()">删除</div>
                                 </span>
+                                <span class="re-upload-error">{{uploadFileXls?.error.msg}}</span>
                             </div>
                             <div class="re-tip">核验码需由字母和数字组合，6-12位</div>
                         </div>
