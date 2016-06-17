@@ -7,7 +7,7 @@ import { ShowAddComponent, ShowDetailComponent } from './+show';
 import { PinAddComponent, PinDetailComponent } from './+pin';
 import { AccountAddComponent, AccountListComponent } from './+account';
 import { BaccaratAddComponent } from './+baccarat';
-
+import * as moment from 'moment';
 
 
 @Component({
@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
 
     }
     ngOnInit() {
+        moment.locale('zh-cn');
         // this.router.navigate(['/']);
     }
 }

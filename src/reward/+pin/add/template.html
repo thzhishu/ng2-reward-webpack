@@ -320,7 +320,7 @@
                 </div>
                 <div class="mx-bg-block">
                     <h5>提醒发式</h5>
-                    <div class="mx-inline"><input class="re-ckb re-pr" type="checkbox" [(ngModel)]="expireRemind.cRPSystemWarn" id="system-er"> <label for="system-er">系统提醒</label> &nbsp;&nbsp;我们将在产品的系统消息中通知您</div>
+                    <!--<div class="mx-inline"><input class="re-ckb re-pr" type="checkbox" [(ngModel)]="expireRemind.cRPSystemWarn" id="system-er"> <label for="system-er">系统提醒</label> &nbsp;&nbsp;我们将在产品的系统消息中通知您</div>-->
                     <div class="mx-inline"><input class="re-ckb re-pr" type="checkbox" [(ngModel)]="expireRemind.cRPEmailWarn" id="email-er"> <label for="email-er">邮件提醒</label>&nbsp;&nbsp;<input type="text" ngControl="cRPEmail" pattern="^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$"
                             [(ngModel)]="expireRemind.cRPEmail" placeholder="请输入您的常用邮箱">
                     </div>

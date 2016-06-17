@@ -26,6 +26,18 @@ textarea:-ms-input-placeholder {
     color: #9a9a9a;
 }
 
+:invalid {
+    box-shadow: none;
+}
+
+:-moz-submit-invalid {
+    box-shadow: none;
+}
+
+:-moz-ui-invalid {
+    box-shadow: none;
+}
+
 a:hover,
 a:active,
 a:focus,
@@ -359,3 +371,31 @@ a.rd-btn-link-inline {
     float: right;
 }
 
+.th-datepicker-block .th-datepicker-range {
+    position: relative
+}
+
+.th-datepicker-block .th-datepicker-tip {
+    position: absolute;
+    width: 650px;
+    z-index: 2
+}
+
+.th-datepicker-block .th-datepicker {
+    display: inline-block;
+    width: 320px;
+    min-height: 270px
+}
+
+.th-datepicker-block .th-datepicker table {
+    width: 100%;
+}
+
+.loading-img {
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    margin-left: -55.5px;
+    width: 111px;
+    height: 75px;
+}

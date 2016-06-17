@@ -13,7 +13,13 @@
     position: absolute;width:640px;z-index: 2;
   }
   .th-datepicker{
-    display:inline-block; width:320px;min-height:270px;
+    display:inline-block; 
+    width:320px;
+    min-height:270px;
+    table{
+      width: 100%;
+    }
+    
   }
 }
 .re-rule{

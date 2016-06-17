@@ -222,7 +222,11 @@ export class ShowDetailComponent {
                 if (this.projectsList.length > 0 && this.prizesParams.projectId === '') {
                     this.prizesParams.projectId = this.projectsList[0].cPId;
                 }
-                this.search();
+                if(this.prizesParams.projectId == null || this.prizesParams.projectId == undefined || this.prizesParams.projectId == ''){
+                    
+                }else{
+                    this.search();
+                }
             }
         }, error => this.handleError);
     }
