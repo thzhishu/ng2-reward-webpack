@@ -54,12 +54,13 @@
                     <table class="table">
                         <caption>
                             数据列表
-                            <a target="_blank" [href]="onDownload()" class="zs-btn-export fr">导出数据</a>
+                            <a target="_blank" [href]="onDownload()" class="zs-btn-export fr" *ngIf="showList?.length" >导出数据</a>
                         </caption>
                         <thead>
                             <tr>
                                 <th>序号</th>
                                 <th>发放时间</th>
+                                <!--<th *ngIf="info?.cRPExchangeType">奖品名称</th>-->
                                 <th colspan="2">发放来源
                                     <div class="zs-b-des">
                                         <i></i>
@@ -75,6 +76,7 @@
                             <tr *ngFor="let psl of showList;let i = index;">
                                 <td>{{(i+1)+(currentPage-1)*pageSize}}</td>
                                 <td>{{moment(psl.cRSendTime,'YYYY-MM-DD HH:mm')||'-'}}</td>
+                                <!--<td *ngIf="info?.cRPExchangeType">{{psl.cRPrizeName||'-'}}</td>-->
                                 <td>{{psl.groupName||'-'}}</td>
                                 <td>{{psl.cREntityName||'-'}}</td>
                                 <td>{{psl.cRMobile||'-'}}</td>

@@ -37,6 +37,7 @@ export class ShowDetailComponent {
     showDetail: any;
     projectsParams: any;
     prizesParams: any;
+    exportDataUrlParams: any;
     info: any;
     totalList: any;
     projectsList: any;
@@ -74,6 +75,7 @@ export class ShowDetailComponent {
         this.prizesParams.range = -1;
 
         this.additionalNumControl = this.showForm.controls['additionalNumControl'];
+        this.exportDataUrlParams = Object.assign({}, this.prizesParams); //导出数据url参数
     }
 
     onDelRewardShow() { 
@@ -145,7 +147,7 @@ export class ShowDetailComponent {
 
 
     onDownload() {
-        let params = Object.assign({},this.prizesParams);
+        let params = Object.assign({},this.exportDataUrlParams);
 
         let search = new URLSearchParams();
         search.set('cRPId', params.cRPId);
@@ -253,6 +255,7 @@ export class ShowDetailComponent {
         this.prizesParams.pageSize = this.pageSize;
         this.ss.showList(this.prizesParams).subscribe(data => {
             this.loading = 0;
+            this.exportDataUrlParams = Object.assign({}, this.prizesParams);
             if (this.errorAlert(data)) {
                 if (data.data != null) {
                     this.showList = data.data.list;

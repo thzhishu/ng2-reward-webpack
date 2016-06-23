@@ -39,6 +39,7 @@ export class PinDetailComponent {
     showDetail: any;
     projectsParams: any;
     prizesParams: any;
+    exportDataUrlParams: any;
     info: any;
     totalList: any;
     projectsList: any;
@@ -84,6 +85,7 @@ export class PinDetailComponent {
         this.prizesParams.startDate = moment().format('YYYY-MM-DD');
         this.prizesParams.endDate = moment().format('YYYY-MM-DD');
         this.prizesParams.range = -1;
+        this.exportDataUrlParams = Object.assign({}, this.prizesParams); //导出数据url参数
     }
 
     onDelRewardShow() { 
@@ -150,7 +152,7 @@ export class PinDetailComponent {
 
     onDownload() {
         let status = '0';
-        let params = Object.assign({},this.prizesParams);
+        let params = Object.assign({},this.exportDataUrlParams);
 
         let search = new URLSearchParams();
         search.set('cRPId', params.cRPId);
@@ -216,6 +218,7 @@ export class PinDetailComponent {
     getOne() {
         this.ps.getOne(this.id).subscribe(data => {
             if (this.errorAlert(data)) {
+                console.log(data);
                 this.info = data.data;
                 this.state = this.info.cRPStatus;
                 // if(this.info.subInfo&&this.info.subInfo.length>0){
@@ -265,6 +268,7 @@ export class PinDetailComponent {
         this.prizesParams.currentPage = this.currentPage;
         this.prizesParams.pageSize = this.pageSize;
         this.ps.pinList(this.prizesParams).subscribe(data => {
+            this.exportDataUrlParams = Object.assign({}, this.prizesParams);
             if (this.errorAlert(data)) {
                 this.pinList = data.data;
                 // this.prizesParams = data.param;

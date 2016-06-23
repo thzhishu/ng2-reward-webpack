@@ -222,7 +222,8 @@
                         <div class="advance advance-show" *ngIf="!uploadFileXls?.error&&!baccarat.fileName&&baccarat.cRPGenerateType === 2&&baccarat.cRPCodeType === 1">
                             <div class="re-upload">
                                 <div class="re-upload">
-                                    <input type="file" name="fileName" [disabled]="baccarat.cRPId" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">
+                                    <!--<input type="file" name="fileName" [disabled]="baccarat.cRPId" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">-->
+                                    <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">
                                     <div class="rd-btn">选择文件</div>
                                     <div class="re-progress clearfix" *ngIf="fileProgress">
                                         <div>
@@ -248,11 +249,11 @@
                         </div>
                         <div class="advance advance-result advance-err" *ngIf="uploadFileXls?.error?.state>0&&baccarat.cRPGenerateType === 2&&baccarat.cRPCodeType === 1">
                             <div class="clearfix">
-                                <span>{{uploadFileXls?.error.msg}}</span>
+                                <span>上传失败</span>
                                 <span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">重新上传</span>
-                                <span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">删除</span>
+                                <!--<span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">删除</span>-->
                             </div>
-                            <div class="re-tip">核验码需由字母和数字组合，6-12位</div>
+                            <div class="re-tip">{{uploadFileXls?.error.msg}}</div>
                         </div>
                     </div>
                     <!-- 奖品兑换方式 end -->
