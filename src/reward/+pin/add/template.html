@@ -162,7 +162,7 @@
                         </div>
                         <div class="advance advance-show" *ngIf="!uploadFileXls?.error&&!pinProgram.fileName&&pinProgram.cRPGenerateType === 2&&pinProgram.cRPCodeType === 1">
                             <div class="re-upload">
-                                <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">
+                                <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                 <div class="rd-btn">选择文件</div>
                                 <div class="re-progress clearfix" *ngIf="fileProgress">
                                     <div>
@@ -183,7 +183,7 @@
                                 <div class="fr re-upload re-upload-op">
                                     <div class="upload-op" (click)="onDelFileName()">删除</div>
                                     <div class="pr">
-                                        <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">
+                                        <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                         <div class="upload-op">重新上传</div>
                                     </div>
                                     
@@ -204,7 +204,7 @@
                             <div class="clearfix">
                                 <span class="re-upload-error">上传失败</span>
                                 <span class="fr re-upload re-upload-op">
-                                    <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">
+                                    <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                     <div class="upload-op">重新上传</div>
                                     <!--<div class="upload-op" (click)="onDelFileName()">删除</div>-->
                                 </span>

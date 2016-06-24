@@ -223,7 +223,7 @@
                             <div class="re-upload">
                                 <div class="re-upload">
                                     <!--<input type="file" name="fileName" [disabled]="baccarat.cRPId" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">-->
-                                    <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)">
+                                    <input type="file" name="fileName" [ng-file-select]="fileOptions" (onUpload)="handleFileUpload($event)" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                     <div class="rd-btn">选择文件</div>
                                     <div class="re-progress clearfix" *ngIf="fileProgress">
                                         <div>
@@ -242,15 +242,18 @@
                             <div class="clearfix">
                                 <span>已上传</span>
                                 <span class="f-name">{{uploadFileXls?.data.filePath}}</span>
-                                <span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">重新上传</span>
-                                <span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">删除</span>
+                                <!--<span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">重新上传</span>
+                                <span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">删除</span>-->
+                                <span class="fr upload-op"  (click)="onDelFileName()">重新上传</span>
+                                <span class="fr upload-op"  (click)="onDelFileName()">删除</span>
                             </div>
                             <div class="re-tip">成功导入 {{uploadFileXls?.data.num}}个核验码</div>
                         </div>
                         <div class="advance advance-result advance-err" *ngIf="uploadFileXls?.error?.state>0&&baccarat.cRPGenerateType === 2&&baccarat.cRPCodeType === 1">
                             <div class="clearfix">
                                 <span>上传失败</span>
-                                <span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">重新上传</span>
+                                <span class="fr upload-op"  (click)="onDelFileName()">重新上传</span>
+                                <!--<span class="fr upload-op" *ngIf="baccarat.cRPId"  (click)="onDelFileName()">重新上传</span>-->
                                 <!--<span class="fr upload-op" *ngIf="baccarat.cRPId" (click)="onDelFileName()">删除</span>-->
                             </div>
                             <div class="re-tip">{{uploadFileXls?.error.msg}}</div>

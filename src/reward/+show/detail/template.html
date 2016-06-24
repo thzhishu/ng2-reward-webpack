@@ -86,7 +86,7 @@
                     <div class="rx-list-empty tc c-pink re-hide" *ngIf="!showList?.length">
                         未查找到有效数据
                     </div>
-                    <pagination (pageChanged)="pageChanged($event)" [totalItems]="pageCount" [(ngModel)]="currentPage" [itemsPerPage]="pageSize" class="pagination-sm" [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event" firstText="首页" lastText="结束页" previousText="上一页"
+                    <pagination (pageChanged)="pageChanged($event)" [totalItems]="pageCount" [(ngModel)]="currentPage" [itemsPerPage]="pageSize" [maxSize]="8" class="pagination-sm" [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event" firstText="首页" lastText="结束页" previousText="上一页"
                         nextText="下一页"></pagination>
                 </div>
             </div>

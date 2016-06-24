@@ -232,9 +232,10 @@ export class PinAddComponent {
     }
 
     handleFileUpload(data): void {
-        if (data.size > 2 * 1024 * 1024) {
-            this.uploadFile = { error: { state: 2, msg: '图片文件尺寸请小于2M' } };
-        } else {
+        // console.log(data)
+        // if (data.size > 2 * 1024 * 1024) {
+        //     this.uploadFileXls = { error: { state: 2, msg: '文件不大于2M' } };
+        // } else {
             if (data.response) {
                 this.uploadFileXls = JSON.parse(data.response);
                 if (this.uploadFileXls.error.state === 0) {
@@ -246,7 +247,7 @@ export class PinAddComponent {
             this.zone.run(() => {
                 this.fileProgress = data.progress.percent;
             });
-        }
+       // }
     }
 
     onDelFileName() {
